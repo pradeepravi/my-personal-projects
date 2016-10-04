@@ -1,0 +1,12 @@
+----------------------
+Trouble Shooting Text
+----------------------
+1) Unable to find the Log4J2 properties file (9 June 2016)
+- for Log4J2 the properties filename is 'log4j2.properties'. 
+Renamed and it started getting detected.
+
+2) Log4J2 not writing to the Tomcat Logs folder
+- Added "sys:" to the Logs path
+
+3) Error when trying to fetch "Value '0000-00-00 00:00:00' can not be represented as java.sql.Timestamp hibernate"
+- Added a property 
