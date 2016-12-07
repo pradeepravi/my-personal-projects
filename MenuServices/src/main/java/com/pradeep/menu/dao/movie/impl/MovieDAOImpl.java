@@ -1,15 +1,22 @@
 package com.pradeep.menu.dao.movie.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.conversions.Bson;
 
-import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.pradeep.menu.bean.to.movie.MovieTO;
@@ -23,7 +30,7 @@ public class MovieDAOImpl implements MovieDAO {
 
 	@Override
 	public List<MovieTO> getMovie(Map<String, Object> filtersMap) {
-		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
+		final MongoDBConnection conn = new MongoDBConnection("movies");
 		List<MovieTO> resultMovies = null;
 		try {
 			if (conn != null) {
@@ -77,22 +84,35 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public List<String> getAllGenreNames() {
-		List<String> genres = null;
+	public Set<String> getAllGenreNames() {
+		final Set<String> genres =  new TreeSet<>();
 		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
 		try {
 			if (conn != null) {
-				genres = new ArrayList<String>();
+				
 				log.debug("Got Connection!!!");
 				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
-				final MongoCursor<String> resultsCursor = moviesCollection.distinct("genres", String.class).iterator();
+				final FindIterable<Document> results = moviesCollection.find()
+						.projection(new Document().append("genres", new Integer(1)).append("_id", new Integer (0)));
+				MongoCursor<Document>resultsCursor = results.iterator();
+				final List<Document> genresDocs = new ArrayList<>();
 				while (resultsCursor.hasNext()) {
-					genres.add(resultsCursor.next());
+					genresDocs.add(resultsCursor.next());
 				}
-				log.debug("Movie : " + genres);
+				
+				log.debug("Movie : " + genresDocs);
+				genresDocs.forEach(d-> {
+					Iterator<Object > itr = d.values().iterator();
+					while(itr.hasNext()){
+						List<String> l = (List<String> )itr.next();		
+						genres.addAll(l);
+					}
+				
+				});
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.error(e.getMessage(), e);
 		} finally {
 			conn.closeConnection();

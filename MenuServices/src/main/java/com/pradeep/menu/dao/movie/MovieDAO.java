@@ -2,6 +2,7 @@ package com.pradeep.menu.dao.movie;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.pradeep.menu.bean.to.movie.MovieTO;
 import com.pradeep.menu.bean.to.movie.MoviesDetailTO;
@@ -12,7 +13,7 @@ public interface MovieDAO {
 
 	List<MovieTO> getMovies(List<String> titles);
 
-	List<String> getAllGenreNames();
+	Set<String> getAllGenreNames();
 
 	List<String> getAllDirectors();
 

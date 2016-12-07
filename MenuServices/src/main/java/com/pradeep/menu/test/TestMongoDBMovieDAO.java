@@ -13,7 +13,7 @@ import org.junit.Test;
 import com.pradeep.menu.dao.movie.MovieDAO;
 import com.pradeep.menu.dao.movie.impl.MovieDAOImpl;
 
-public class TestMovieDAO {
+public class TestMongoDBMovieDAO {
 
 	static MovieDAO movieDao = null;
 	@BeforeClass
@@ -30,7 +30,7 @@ public class TestMovieDAO {
 	
 
 	@Test
-	public void testGetMovie(){
+	public void testGetMovies(){
 		System.out.println("testGetMovie***");
 		Map<String , Object > mapOfCriteria = new HashMap<String,Object>();
 		mapOfCriteria.put("title", "Star Trek"); 
@@ -39,8 +39,8 @@ public class TestMovieDAO {
 	}
 	
 	@Test
-	public void testGetMovies(){
-		System.out.println( movieDao.getMovies(Arrays.asList("Star Trek","The Martian"))); 
+	public void testGetAllGenres(){
+		System.out.println( movieDao.getAllGenreNames()); 
 		Assert.assertTrue(true); 
 	}
 	
