@@ -1,6 +1,8 @@
 package com.pradeep.menu.test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.AfterClass;
@@ -20,36 +22,37 @@ public class TestMongoDBMovieDAO {
 	}
 	
 	@Test
-	public void testGetGenres(){
-		
-		System.out.println( movieDao.getAllGenreNames());
-		Assert.assertTrue(true); 
-	}
-	
-
-	@Test
 	public void testGetMovies(){
 		System.out.println("testGetMovie***");
 		Map<String , Object > mapOfCriteria = new HashMap<String,Object>();
 		mapOfCriteria.put("title", "Star Trek"); 
-		System.out.println( movieDao.getMovie(mapOfCriteria).size());
+		System.out.println( "FETCH MOVIE FOR SEARCH STRING - "+movieDao.getMovie(mapOfCriteria).size());
 		Assert.assertTrue(true); 
 	}
 	
 	@Test
 	public void testGetAllGenres(){
-		System.out.println( movieDao.getAllGenreNames()); 
+		System.out.println( "ALL DIRECTORS - "+movieDao.getAllGenreNames().size()); 
 		Assert.assertTrue(true); 
 	}
 	
 	@Test
 	public void testGetAllDirectors(){
-		System.out.println( movieDao.getAllDirectors()); 
+		System.out.println( "ALL DIRECTORS-"+movieDao.getAllDirectors().size()); 
 		Assert.assertTrue(true); 
 	}
 	@Test
 	public void testGetAllActors(){
-		System.out.println( movieDao.getAllActors()); 
+		System.out.println( "ALL ACTORS"+movieDao.getAllActors().size()); 
+		Assert.assertTrue(true); 
+	}
+	
+	@Test
+	public void testGetAllMoviesForActor(){
+		List<String> li = new ArrayList<>();
+		//li.add("Pierce");
+		li.add("Neal");
+		System.out.println( movieDao.getMoviesForActors(li).size()); 
 		Assert.assertTrue(true); 
 	}
 	

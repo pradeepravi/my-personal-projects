@@ -1,6 +1,16 @@
 package com.pradeep.menu.bean.to.movie;
 
+import java.util.Arrays;
+
 public class MoviesDetailTO {
+	@Override
+	public String toString() {
+		return "MoviesDetailTO [title=" + title + ", year=" + year + ", rated=" + rated + ", released=" + released
+				+ ", runtime=" + runtime + ", countries=" + Arrays.toString(countries) + ", genres="
+				+ Arrays.toString(genres) + ", directors=" + Arrays.toString(directors) + ", writers="
+				+ Arrays.toString(writers) + ", actors=" + Arrays.toString(actors) + ", plot=" + plot + ", posters="
+				+ Arrays.toString(posters) + ", ratings=" + Arrays.toString(ratings) + ", award=" + award + "]";
+	}
 	private String id;
 	private String title;
 	private String year;

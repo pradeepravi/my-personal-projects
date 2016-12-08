@@ -10,8 +10,6 @@ import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bson.BsonDocument;
-import org.bson.BsonDocumentReader;
 import org.bson.BsonString;
 import org.bson.BsonType;
 import org.bson.BsonValue;
@@ -27,17 +25,57 @@ import com.pradeep.menu.util.mongodb.MongoDBConnection;
 
 public class MovieDAOImpl implements MovieDAO {
 
+	static enum MovieDetailsFields {
+		TITLE("title"), ACTORS("actors"), DIRECTOR("director"), GENRES("genres"), OBJECT_ID("_id");
+		private String actualFieldName;
+
+		MovieDetailsFields(String str) {
+			this.actualFieldName = str;
+		}
+
+		public String getActualFieldName() {
+			return actualFieldName;
+		}
+	}
+
+	static enum MongoDBCollections {
+		MOVIES("movies"), MOVIES_DETAILS("movieDetails");
+		private String collectionName;
+
+		MongoDBCollections(String str) {
+			this.collectionName = str;
+		}
+
+		public String getActualCollectionsName() {
+			return collectionName;
+		}
+	}
+
+	static enum MongoDBDatabase {
+		MOVIES_DB("moviesDatabase");
+		private String dbName;
+
+		MongoDBDatabase(String str) {
+			this.dbName = str;
+		}
+
+		public String getDBName() {
+			return dbName;
+		}
+	}
+
 	static final Logger log = LogManager.getLogger(MovieDAOImpl.class);
 
 	@Override
 	public List<MovieTO> getMovie(Map<String, Object> filtersMap) {
-		final MongoDBConnection conn = new MongoDBConnection("movies");
+		final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
 		List<MovieTO> resultMovies = null;
 		try {
 			if (conn != null) {
 				resultMovies = new ArrayList<MovieTO>();
 				log.debug("Got Connection!!!");
-				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movies");
+				final MongoCollection<Document> moviesCollection = conn
+						.getMongoDBCollection(MongoDBCollections.MOVIES.getActualCollectionsName());
 				final Document filter = getCriteriaPopulatedDocument(filtersMap);
 				ArrayList<Document> resultsItr = moviesCollection.find(filter).into(new ArrayList<Document>());
 				for (Document doc : resultsItr) {
@@ -59,14 +97,15 @@ public class MovieDAOImpl implements MovieDAO {
 	@Override
 	public List<MovieTO> getMovies(List<String> titles) {
 		List<MovieTO> movies = null;
-		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
+		final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
 		try {
 			if (conn != null) {
 				movies = new ArrayList<MovieTO>();
 				log.debug("Got Connection!!!");
-				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movies");
+				final MongoCollection<Document> moviesCollection = conn
+						.getMongoDBCollection(MongoDBCollections.MOVIES.getActualCollectionsName());
 				final Document bdb = new Document();
-				bdb.put("title", new Document("$in", titles));
+				bdb.put(MovieDetailsFields.TITLE.getActualFieldName(), new Document("$in", titles));
 				MongoCursor<Document> resultsCursor = moviesCollection.find(bdb).iterator();
 				while (resultsCursor.hasNext()) {
 					final Document result = resultsCursor.next();
@@ -75,7 +114,7 @@ public class MovieDAOImpl implements MovieDAO {
 				}
 			}
 		} catch (Exception e) {
-			// log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);
 			e.printStackTrace();
 		} finally {
 			conn.closeConnection();
@@ -86,35 +125,31 @@ public class MovieDAOImpl implements MovieDAO {
 
 	@Override
 	public Set<String> getAllGenreNames() {
-		final Document projections = new Document().append("genres", new Integer(1)).append("_id", new Integer(0));
+		final Document projections = new Document()
+				.append(MovieDetailsFields.GENRES.getActualFieldName(), new Integer(1))
+				.append(MovieDetailsFields.OBJECT_ID.getActualFieldName(), new Integer(0));
 		final Set<String> genres = fetchAllLists(projections);
 		return genres;
 	}
 
 	private Set<String> fetchAllLists(final Document projections) {
 		final Set<String> genres = new TreeSet<>();
-		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
+		final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
 		try {
 			if (conn != null) {
 
 				log.debug("Got Connection!!!");
-				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
+				final MongoCollection<Document> moviesCollection = conn
+						.getMongoDBCollection(MongoDBCollections.MOVIES_DETAILS.getActualCollectionsName());
 				final FindIterable<Document> results = moviesCollection.find().projection(projections);
 				MongoCursor<Document> resultsCursor = results.iterator();
-				final List<Document> genresDocs = new ArrayList<>();
 				while (resultsCursor.hasNext()) {
-					genresDocs.add(resultsCursor.next());
-				}
-
-				log.debug("Movie : " + genresDocs);
-				genresDocs.forEach(d -> {
-					Iterator<Object> itr = d.values().iterator();
+					Iterator<Object> itr = resultsCursor.next().values().iterator();
 					while (itr.hasNext()) {
 						List<String> l = (List<String>) itr.next();
 						genres.addAll(l);
 					}
-
-				});
+				}
 			}
 
 		} catch (Exception e) {
@@ -130,7 +165,7 @@ public class MovieDAOImpl implements MovieDAO {
 		MovieTO movie = null;
 		if (document != null) {
 			movie = new MovieTO();
-			movie.setTitle(document.getString("title"));
+			movie.setTitle(document.getString(MovieDetailsFields.TITLE.getActualFieldName()));
 			movie.setYear(String.valueOf(document.getInteger("year")));
 			movie.setType(document.getString("type"));
 			movie.setImdbRating(document.getString("imdb"));
@@ -143,9 +178,10 @@ public class MovieDAOImpl implements MovieDAO {
 		if (criteriasMap != null) {
 			doc = new Document();
 			for (String key : criteriasMap.keySet()) {
-				if (key.equalsIgnoreCase("TITLE")) {
-					doc.append("title", Pattern.compile((String) criteriasMap.get(key)));// Like
-																							// Search
+				if (key.equalsIgnoreCase(MovieDetailsFields.TITLE.getActualFieldName())) {
+					doc.append(MovieDetailsFields.TITLE.getActualFieldName(),
+							Pattern.compile((String) criteriasMap.get(key)));// Like
+					// Search
 				} else if (key.equalsIgnoreCase("TYPE")) {
 					doc.append("type", criteriasMap.get(key));
 				} else if (key.equalsIgnoreCase("YEAR")) {
@@ -158,74 +194,32 @@ public class MovieDAOImpl implements MovieDAO {
 
 	@Override
 	public Set<String> getAllDirectors() {
-		Set<String> directors = null;
-		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
-		try {
-			if (conn != null) {
-				directors = new TreeSet<>();
-				log.debug("Got Connection!!!");
-
-				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
-				List<BsonValue> directors1 = moviesCollection.distinct("director", BsonValue.class)
-						.into(new ArrayList<BsonValue>());
-				directors = new TreeSet<>();
-				for (BsonValue temp : directors1) {					
-					if (temp.getBsonType() == BsonType.STRING) {
-						directors.add(((BsonString) temp).getValue());
-					}
-				}
-				log.debug("Movie : " + directors);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			conn.closeConnection();
-		}
-		return directors;
+		return fetchAllSetForField(MovieDetailsFields.DIRECTOR.getActualFieldName());
 	}
 
 	@Override
 	public Set<String> getAllActors() {
-		Set<String> directors = null;
-		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
-		try {
-			if (conn != null) {
-				directors = new TreeSet<>();
-				log.debug("Got Connection!!!");
-
-				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
-				List<BsonValue> directors1 = moviesCollection.distinct("actors", BsonValue.class)
-						.into(new ArrayList<BsonValue>());
-				directors = new TreeSet<>();
-				for (BsonValue temp : directors1) {					
-					if (temp.getBsonType() == BsonType.STRING) {
-						directors.add(((BsonString) temp).getValue());
-					}
-				}
-				log.debug("Movie : " + directors);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			conn.closeConnection();
-		}
-		return directors;
+		return fetchAllSetForField(MovieDetailsFields.ACTORS.getActualFieldName());
 	}
 
 	@Override
 	public List<MoviesDetailTO> getMoviesForActors(List<String> actors) {
+
+		final List<Pattern> likeSearchList = new ArrayList<>();
+		actors.forEach(a -> {
+			likeSearchList.add(java.util.regex.Pattern.compile(a));
+		});
 		List<MoviesDetailTO> moviesByActors = null;
-		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
+		final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
 		try {
 			if (conn != null) {
 				moviesByActors = new ArrayList<MoviesDetailTO>();
 				log.debug("Got Connection!!!");
 
-				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
+				final MongoCollection<Document> moviesCollection = conn
+						.getMongoDBCollection(MongoDBCollections.MOVIES_DETAILS.getActualCollectionsName());
 				final Document bdb = new Document();
-				bdb.put("title", new Document("$in", actors));
+				bdb.put(MovieDetailsFields.ACTORS.getActualFieldName(), new Document("$in", likeSearchList));
 				MongoCursor<Document> resultsCursor = moviesCollection.find(bdb).iterator();
 				while (resultsCursor.hasNext()) {
 					final Document result = resultsCursor.next();
@@ -236,20 +230,12 @@ public class MovieDAOImpl implements MovieDAO {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.error(e.getMessage(), e);
 		} finally {
 			conn.closeConnection();
 		}
 		return moviesByActors;
-	}
-
-	private MoviesDetailTO getPopulatedMovieDetailsTO(Document result) {
-		MoviesDetailTO moviedDetailTO = null;
-		if (result != null) {
-
-		}
-
-		return moviedDetailTO;
 	}
 
 	@Override
@@ -264,4 +250,43 @@ public class MovieDAOImpl implements MovieDAO {
 		return null;
 	}
 
+	private Set<String> fetchAllSetForField(String searchField) {
+		Set<String> directors = null;
+		final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
+		try {
+			if (conn != null) {
+				log.debug("Got Connection!!!");
+
+				final MongoCollection<Document> moviesCollection = conn
+						.getMongoDBCollection(MongoDBCollections.MOVIES_DETAILS.getActualCollectionsName());
+				List<BsonValue> directors1 = moviesCollection.distinct(searchField, BsonValue.class)
+						.into(new ArrayList<BsonValue>());
+				directors = new TreeSet<>();
+				for (BsonValue temp : directors1) {
+					if (temp.getBsonType() == BsonType.STRING) {
+						directors.add(((BsonString) temp).getValue());
+					}
+				}
+				log.debug("Movie : " + directors);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conn.closeConnection();
+		}
+		return directors;
+	}
+
+	private MoviesDetailTO getPopulatedMovieDetailsTO(Document result) {
+		MoviesDetailTO moviedDetailTO = null;
+		if (result != null) {
+			moviedDetailTO = new MoviesDetailTO();
+			moviedDetailTO.setId(result.getObjectId(MovieDetailsFields.OBJECT_ID.getActualFieldName()).toString());
+			moviedDetailTO.setTitle(result.getString(MovieDetailsFields.TITLE.getActualFieldName()));
+
+		}
+
+		return moviedDetailTO;
+	}
 }
