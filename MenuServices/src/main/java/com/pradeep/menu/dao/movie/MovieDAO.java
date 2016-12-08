@@ -15,9 +15,9 @@ public interface MovieDAO {
 
 	Set<String> getAllGenreNames();
 
-	List<String> getAllDirectors();
+	Set<String> getAllDirectors();
 
-	List<String> getAllActors();
+	Set<String> getAllActors();
 
 	List<MoviesDetailTO> getMoviesForActors(List<String> actors);
 

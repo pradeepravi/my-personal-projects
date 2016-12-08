@@ -1,8 +1,6 @@
 package com.pradeep.menu.test;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.junit.AfterClass;
@@ -41,6 +39,17 @@ public class TestMongoDBMovieDAO {
 	@Test
 	public void testGetAllGenres(){
 		System.out.println( movieDao.getAllGenreNames()); 
+		Assert.assertTrue(true); 
+	}
+	
+	@Test
+	public void testGetAllDirectors(){
+		System.out.println( movieDao.getAllDirectors()); 
+		Assert.assertTrue(true); 
+	}
+	@Test
+	public void testGetAllActors(){
+		System.out.println( movieDao.getAllActors()); 
 		Assert.assertTrue(true); 
 	}
 	

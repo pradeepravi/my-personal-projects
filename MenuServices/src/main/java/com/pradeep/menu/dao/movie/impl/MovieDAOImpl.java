@@ -1,7 +1,6 @@
 package com.pradeep.menu.dao.movie.impl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +11,11 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bson.BsonDocument;
+import org.bson.BsonDocumentReader;
+import org.bson.BsonString;
+import org.bson.BsonType;
+import org.bson.BsonValue;
 import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.conversions.Bson;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -85,29 +86,34 @@ public class MovieDAOImpl implements MovieDAO {
 
 	@Override
 	public Set<String> getAllGenreNames() {
-		final Set<String> genres =  new TreeSet<>();
+		final Document projections = new Document().append("genres", new Integer(1)).append("_id", new Integer(0));
+		final Set<String> genres = fetchAllLists(projections);
+		return genres;
+	}
+
+	private Set<String> fetchAllLists(final Document projections) {
+		final Set<String> genres = new TreeSet<>();
 		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
 		try {
 			if (conn != null) {
-				
+
 				log.debug("Got Connection!!!");
 				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
-				final FindIterable<Document> results = moviesCollection.find()
-						.projection(new Document().append("genres", new Integer(1)).append("_id", new Integer (0)));
-				MongoCursor<Document>resultsCursor = results.iterator();
+				final FindIterable<Document> results = moviesCollection.find().projection(projections);
+				MongoCursor<Document> resultsCursor = results.iterator();
 				final List<Document> genresDocs = new ArrayList<>();
 				while (resultsCursor.hasNext()) {
 					genresDocs.add(resultsCursor.next());
 				}
-				
+
 				log.debug("Movie : " + genresDocs);
-				genresDocs.forEach(d-> {
-					Iterator<Object > itr = d.values().iterator();
-					while(itr.hasNext()){
-						List<String> l = (List<String> )itr.next();		
+				genresDocs.forEach(d -> {
+					Iterator<Object> itr = d.values().iterator();
+					while (itr.hasNext()) {
+						List<String> l = (List<String>) itr.next();
 						genres.addAll(l);
 					}
-				
+
 				});
 			}
 
@@ -117,7 +123,6 @@ public class MovieDAOImpl implements MovieDAO {
 		} finally {
 			conn.closeConnection();
 		}
-
 		return genres;
 	}
 
@@ -152,22 +157,28 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public List<String> getAllDirectors() {
-		List<String> directors = null;
+	public Set<String> getAllDirectors() {
+		Set<String> directors = null;
 		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
 		try {
 			if (conn != null) {
-				directors = new ArrayList<String>();
+				directors = new TreeSet<>();
 				log.debug("Got Connection!!!");
 
 				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
-				directors = moviesCollection.distinct("director", String.class).into(new ArrayList<String>());
-
+				List<BsonValue> directors1 = moviesCollection.distinct("director", BsonValue.class)
+						.into(new ArrayList<BsonValue>());
+				directors = new TreeSet<>();
+				for (BsonValue temp : directors1) {					
+					if (temp.getBsonType() == BsonType.STRING) {
+						directors.add(((BsonString) temp).getValue());
+					}
+				}
 				log.debug("Movie : " + directors);
 			}
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			e.printStackTrace();
 		} finally {
 			conn.closeConnection();
 		}
@@ -175,25 +186,32 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public List<String> getAllActors() {
-		List<String> actors = null;
+	public Set<String> getAllActors() {
+		Set<String> directors = null;
 		final MongoDBConnection conn = new MongoDBConnection("movieDatabase");
 		try {
 			if (conn != null) {
-				actors = new ArrayList<String>();
+				directors = new TreeSet<>();
 				log.debug("Got Connection!!!");
 
 				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
-				actors = moviesCollection.distinct("actors", String.class).into(new ArrayList<String>());
-
-				log.debug("Movie : " + actors);
+				List<BsonValue> directors1 = moviesCollection.distinct("actors", BsonValue.class)
+						.into(new ArrayList<BsonValue>());
+				directors = new TreeSet<>();
+				for (BsonValue temp : directors1) {					
+					if (temp.getBsonType() == BsonType.STRING) {
+						directors.add(((BsonString) temp).getValue());
+					}
+				}
+				log.debug("Movie : " + directors);
 			}
+
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			e.printStackTrace();
 		} finally {
 			conn.closeConnection();
 		}
-		return actors;
+		return directors;
 	}
 
 	@Override
@@ -204,7 +222,7 @@ public class MovieDAOImpl implements MovieDAO {
 			if (conn != null) {
 				moviesByActors = new ArrayList<MoviesDetailTO>();
 				log.debug("Got Connection!!!");
-				
+
 				final MongoCollection<Document> moviesCollection = conn.getMongoDBCollection("movieDetails");
 				final Document bdb = new Document();
 				bdb.put("title", new Document("$in", actors));
@@ -226,13 +244,13 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	private MoviesDetailTO getPopulatedMovieDetailsTO(Document result) {
-		MoviesDetailTO  moviedDetailTO = null;
-		if(result!=null){
-			
+		MoviesDetailTO moviedDetailTO = null;
+		if (result != null) {
+
 		}
-		
-		return moviedDetailTO ;
-	} 
+
+		return moviedDetailTO;
+	}
 
 	@Override
 	public List<MoviesDetailTO> getMoviesForDirectors(List<String> actors) {
