@@ -23,7 +23,7 @@ public class StaffServiceWSController {
 	@Autowired
 	StaffService staffService; // Service which will do all data
 								// retrieval/manipulation work
-	final Logger log = LogManager.getLogger(StaffServiceWSController.class );
+	final Logger log = LogManager.getLogger(StaffServiceWSController.class);
 
 	@RequestMapping(value = "/staff", method = RequestMethod.GET)
 	public ResponseEntity<List<StaffTO>> listAllStaff() {
