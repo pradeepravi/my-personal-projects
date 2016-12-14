@@ -56,6 +56,23 @@ public class TestMongoDBMovieDAO {
 		Assert.assertTrue(true); 
 	}
 	
+	@Test
+	public void testGetAllMoviesForActorsOrderByRating(){
+		/*List<String> directors = new ArrayList<>();
+		directors.add("Brian");*/
+		
+		List<String> actors= new ArrayList<>();
+		actors.add("Pamela");
+
+		List<String> genres= new ArrayList<>();
+		genres.add("Action");
+		genres.add("Short");
+
+		System.out.println(" [testGetAllMoviesForActorsOrderByRating] ***** "+movieDao.getMoviesByRating(genres, null, actors).size());  
+		Assert.assertTrue(true);
+	}
+	
+	
 	@AfterClass
 	public static void close(){
 		movieDao = null;

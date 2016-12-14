@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +28,8 @@ import com.pradeep.menu.util.mongodb.MongoDBConnection;
 public class MovieDAOImpl implements MovieDAO {
 
 	static enum MovieDetailsFields {
-		TITLE("title"), ACTORS("actors"), DIRECTOR("director"), GENRES("genres"), OBJECT_ID("_id");
+		TITLE("title"), ACTORS("actors"), DIRECTOR("director"), GENRES("genres"), OBJECT_ID("_id"), YEAR("year"), TYPE(
+				"type"), IMDB("imdb");
 		private String actualFieldName;
 
 		MovieDetailsFields(String str) {
@@ -52,7 +55,7 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	static enum MongoDBDatabase {
-		MOVIES_DB("moviesDatabase");
+		MOVIES_DB("movieDatabase");
 		private String dbName;
 
 		MongoDBDatabase(String str) {
@@ -105,7 +108,7 @@ public class MovieDAOImpl implements MovieDAO {
 				final MongoCollection<Document> moviesCollection = conn
 						.getMongoDBCollection(MongoDBCollections.MOVIES.getActualCollectionsName());
 				final Document bdb = new Document();
-				bdb.put(MovieDetailsFields.TITLE.getActualFieldName(), new Document("$in", titles));
+				bdb.append(MovieDetailsFields.TITLE.getActualFieldName(), new Document("$in", titles));				
 				MongoCursor<Document> resultsCursor = moviesCollection.find(bdb).iterator();
 				while (resultsCursor.hasNext()) {
 					final Document result = resultsCursor.next();
@@ -166,9 +169,9 @@ public class MovieDAOImpl implements MovieDAO {
 		if (document != null) {
 			movie = new MovieTO();
 			movie.setTitle(document.getString(MovieDetailsFields.TITLE.getActualFieldName()));
-			movie.setYear(String.valueOf(document.getInteger("year")));
-			movie.setType(document.getString("type"));
-			movie.setImdbRating(document.getString("imdb"));
+			movie.setYear(String.valueOf(document.getInteger(MovieDetailsFields.YEAR.getActualFieldName())));
+			movie.setType(document.getString(MovieDetailsFields.TYPE.getActualFieldName()));
+			movie.setImdbRating(document.getString(MovieDetailsFields.IMDB.getActualFieldName()));
 		}
 		return movie;
 	}
@@ -183,9 +186,9 @@ public class MovieDAOImpl implements MovieDAO {
 							Pattern.compile((String) criteriasMap.get(key)));// Like
 					// Search
 				} else if (key.equalsIgnoreCase("TYPE")) {
-					doc.append("type", criteriasMap.get(key));
+					doc.append(MovieDetailsFields.TYPE.getActualFieldName(), criteriasMap.get(key));
 				} else if (key.equalsIgnoreCase("YEAR")) {
-					doc.append("year", criteriasMap.get(key));
+					doc.append(MovieDetailsFields.YEAR.getActualFieldName(), criteriasMap.get(key));
 				}
 			}
 		}
@@ -284,9 +287,64 @@ public class MovieDAOImpl implements MovieDAO {
 			moviedDetailTO = new MoviesDetailTO();
 			moviedDetailTO.setId(result.getObjectId(MovieDetailsFields.OBJECT_ID.getActualFieldName()).toString());
 			moviedDetailTO.setTitle(result.getString(MovieDetailsFields.TITLE.getActualFieldName()));
-
 		}
-
 		return moviedDetailTO;
 	}
+
+	@Override
+	public List<MoviesDetailTO> getMoviesByRating(List<String> genres, List<String> directors, List<String> actors) {
+		final Document newQuery = new Document();
+		boolean isCriteriaPassed = false;
+		List<MoviesDetailTO> finalResults = null;
+		if(genres!=null && genres.size()>0){
+			newQuery.append(MovieDetailsFields.GENRES.getActualFieldName(), 
+					new Document().append("$in", genres.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+			isCriteriaPassed = true;
+		}
+		
+		if(directors!=null && directors.size()>0){
+			newQuery.append(MovieDetailsFields.DIRECTOR.getActualFieldName(), 
+					new Document().append("$in", directors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+			isCriteriaPassed = true;
+		}
+		
+		if(actors!=null && actors.size()>0){
+			newQuery.append(MovieDetailsFields.ACTORS.getActualFieldName(),
+					new Document().append("$in", actors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+			isCriteriaPassed = true;
+		}
+		
+		if(isCriteriaPassed){
+			final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
+			try {
+				if (conn != null) {
+					log.debug("Got Connection!!!");
+
+					final MongoCollection<Document> moviesCollection = conn
+							.getMongoDBCollection(MongoDBCollections.MOVIES_DETAILS.getActualCollectionsName());
+					List<Document> result = moviesCollection.find(newQuery).sort(new Document().append("imdb.rating", 1))
+							.into(new ArrayList<>());
+					final List<MoviesDetailTO> results = new ArrayList<>();
+					if(result!=null){
+						result.forEach(m->{
+							MoviesDetailTO mTemp = this.getPopulatedMovieDetailsTO(m);
+							results.add(mTemp);
+						});
+						
+						finalResults  = results;
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				conn.closeConnection();
+			}
+		}	
+		
+		return finalResults;
+	}
+	
+	
+	
 }

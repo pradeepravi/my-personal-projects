@@ -24,5 +24,7 @@ public interface MovieDAO {
 	List<MoviesDetailTO> getMoviesForDirectors(List<String> actors);
 
 	List<MoviesDetailTO> getMoviesForGenres(List<String> actors);
+	
+	List<MoviesDetailTO> getMoviesByRating(List<String> genres, List<String> directors, List<String> actors);
 
 }
