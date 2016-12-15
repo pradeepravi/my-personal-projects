@@ -294,27 +294,27 @@ public class MovieDAOImpl implements MovieDAO {
 	@Override
 	public List<MoviesDetailTO> getMoviesByRating(List<String> genres, List<String> directors, List<String> actors) {
 		final Document newQuery = new Document();
-		boolean isCriteriaPassed = false;
+		boolean isAtLeastOneParamsListPassed = false;
 		List<MoviesDetailTO> finalResults = null;
 		if(genres!=null && genres.size()>0){
 			newQuery.append(MovieDetailsFields.GENRES.getActualFieldName(), 
 					new Document().append("$in", genres.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
-			isCriteriaPassed = true;
+			isAtLeastOneParamsListPassed = true;
 		}
 		
 		if(directors!=null && directors.size()>0){
 			newQuery.append(MovieDetailsFields.DIRECTOR.getActualFieldName(), 
 					new Document().append("$in", directors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
-			isCriteriaPassed = true;
+			isAtLeastOneParamsListPassed = true;
 		}
 		
 		if(actors!=null && actors.size()>0){
 			newQuery.append(MovieDetailsFields.ACTORS.getActualFieldName(),
 					new Document().append("$in", actors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
-			isCriteriaPassed = true;
+			isAtLeastOneParamsListPassed = true;
 		}
 		
-		if(isCriteriaPassed){
+		if(isAtLeastOneParamsListPassed){
 			final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
 			try {
 				if (conn != null) {

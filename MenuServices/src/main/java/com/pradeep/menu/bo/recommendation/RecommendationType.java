@@ -8,6 +8,7 @@ public enum RecommendationType{
 	String type;
 	RecommendationType(String type){
 		this.type=type;
-	}	
+	}
+	
 	
 }
