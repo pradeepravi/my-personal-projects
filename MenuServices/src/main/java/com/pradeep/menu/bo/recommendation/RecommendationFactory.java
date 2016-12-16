@@ -9,7 +9,7 @@ public class RecommendationFactory {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public RecommendationService getInstance (RecommendationType recommendationType){
+	public static RecommendationService getInstance (RecommendationType recommendationType){
 		RecommendationService recomm = null; 
 		if(recommendationType == RecommendationType.MOVIES ){
 			recomm = new MovieRecommendationsServiceImpl();

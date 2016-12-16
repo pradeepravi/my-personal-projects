@@ -1,24 +1,34 @@
 package com.pradeep.menu.test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.pradeep.menu.bo.recommendation.RecommendationFactory;
+import com.pradeep.menu.bo.recommendation.RecommendationParam;
+import com.pradeep.menu.bo.recommendation.RecommendationService;
+import com.pradeep.menu.bo.recommendation.RecommendationType;
 import com.pradeep.menu.dao.movie.MovieDAO;
 import com.pradeep.menu.dao.movie.impl.MovieDAOImpl;
+import com.pradeep.menu.util.exception.WebRecommendationsException;
 
 public class TestMongoDBMovieDAO {
 
 	static MovieDAO movieDao = null;
+	static RecommendationService movieRecommendations = null;
 	@BeforeClass
 	public static void init (){
-		movieDao = new MovieDAOImpl();
+		movieDao = new MovieDAOImpl(); 
+		movieRecommendations = RecommendationFactory.getInstance(RecommendationType.MOVIES);  
 	}
 	
 	@Test
@@ -26,24 +36,44 @@ public class TestMongoDBMovieDAO {
 		System.out.println("testGetMovie***");
 		Map<String , Object > mapOfCriteria = new HashMap<String,Object>();
 		mapOfCriteria.put("title", "Star Trek"); 
-		System.out.println( "FETCH MOVIE FOR SEARCH STRING - "+movieDao.getMovie(mapOfCriteria).size());
+		try {
+			System.out.println( "FETCH MOVIE FOR SEARCH STRING - "+movieDao.getMovies(Arrays.asList("The Martian")).size());
+		} catch (WebRecommendationsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Assert.assertTrue(true); 
 	}
 	
 	@Test
 	public void testGetAllGenres(){
-		System.out.println( "ALL DIRECTORS - "+movieDao.getAllGenreNames().size()); 
+		try {
+			System.out.println( "ALL DIRECTORS - "+movieDao.getAllGenreNames().size());
+		} catch (WebRecommendationsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		Assert.assertTrue(true); 
 	}
 	
 	@Test
 	public void testGetAllDirectors(){
-		System.out.println( "ALL DIRECTORS-"+movieDao.getAllDirectors().size()); 
+		try {
+			System.out.println( "ALL DIRECTORS-"+movieDao.getAllDirectors().size());
+		} catch (WebRecommendationsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		Assert.assertTrue(true); 
 	}
 	@Test
 	public void testGetAllActors(){
-		System.out.println( "ALL ACTORS"+movieDao.getAllActors().size()); 
+		try {
+			System.out.println( "ALL ACTORS"+movieDao.getAllActors().size());
+		} catch (WebRecommendationsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		Assert.assertTrue(true); 
 	}
 	
@@ -52,7 +82,12 @@ public class TestMongoDBMovieDAO {
 		List<String> li = new ArrayList<>();
 		//li.add("Pierce");
 		li.add("Neal");
-		System.out.println( movieDao.getMoviesForActors(li).size()); 
+		try {
+			System.out.println( movieDao.getMoviesForActors(li).size());
+		} catch (WebRecommendationsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		Assert.assertTrue(true); 
 	}
 	
@@ -61,14 +96,42 @@ public class TestMongoDBMovieDAO {
 		/*List<String> directors = new ArrayList<>();
 		directors.add("Brian");*/
 		
-		List<String> actors= new ArrayList<>();
+		Set<String> actors= new HashSet<>(); 
 		actors.add("Pamela");
 
-		List<String> genres= new ArrayList<>();
+		Set<String> genres= new HashSet<>();
 		genres.add("Action");
 		genres.add("Short");
 
-		System.out.println(" [testGetAllMoviesForActorsOrderByRating] ***** "+movieDao.getMoviesByRating(genres, null, actors).size());  
+		try {
+			System.out.println(" [testGetAllMoviesForActorsOrderByRating] ***** "+movieDao.getMoviesByRating(genres, null, actors).size());
+		} catch (WebRecommendationsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		Assert.assertTrue(true);
+	}
+	
+	
+	@Test
+	public void testRecommendationsForWatchedMovies() {
+		/*List<String> directors = new ArrayList<>();
+		directors.add("Brian");*/
+			
+		List<String> watchedMovies = new ArrayList<>();
+		watchedMovies.add("The Martian");
+		
+		Map<RecommendationParam, List<String>> paramsMap = new HashMap<>();
+		List<String> list = new ArrayList<>();
+		list .add("Bourne");
+		paramsMap.put(RecommendationParam.MOVIE_TITLES, list);
+		try {
+			System.out.println(" [testGetAllMoviesForActorsOrderByRating] ***** "+movieRecommendations.getRecommendations(paramsMap).size());
+
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 		Assert.assertTrue(true);
 	}
 	

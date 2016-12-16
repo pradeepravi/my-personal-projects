@@ -8,6 +8,8 @@
 	<packaging>war</packaging>
 	<name>Pradeeps Web Recommendations</name>
 	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<springframework.version>4.2.5.RELEASE</springframework.version>
 		<jackson.version>2.5.3</jackson.version>
 	</properties>

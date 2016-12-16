@@ -3,11 +3,16 @@ package com.pradeep.menu.bean.to.movie;
 import java.io.Serializable;
 
 public class MovieTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7372085060347207568L;
 	String id;
 	String title;
 	String year;
 	String imdbRating;
 	String type;
+	MoviesDetailTO movieDetails;
 
 	public String getId() {
 		return id;
@@ -47,6 +52,14 @@ public class MovieTO implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public MoviesDetailTO getMovieDetails() {
+		return movieDetails;
+	}
+
+	public void setMovieDetails(MoviesDetailTO movieDetails) {
+		this.movieDetails = movieDetails;
 	}
 
 	@Override

@@ -1,13 +1,12 @@
 package com.pradeep.menu.dao.movie.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
@@ -23,9 +22,11 @@ import com.mongodb.client.MongoCursor;
 import com.pradeep.menu.bean.to.movie.MovieTO;
 import com.pradeep.menu.bean.to.movie.MoviesDetailTO;
 import com.pradeep.menu.dao.movie.MovieDAO;
+import com.pradeep.menu.util.exception.WebRecommendationsException;
 import com.pradeep.menu.util.mongodb.MongoDBConnection;
-
+ 
 public class MovieDAOImpl implements MovieDAO {
+	
 
 	static enum MovieDetailsFields {
 		TITLE("title"), ACTORS("actors"), DIRECTOR("director"), GENRES("genres"), OBJECT_ID("_id"), YEAR("year"), TYPE(
@@ -70,7 +71,7 @@ public class MovieDAOImpl implements MovieDAO {
 	static final Logger log = LogManager.getLogger(MovieDAOImpl.class);
 
 	@Override
-	public List<MovieTO> getMovie(Map<String, Object> filtersMap) {
+	public List<MovieTO> getMovie(MoviesDetailTO searchParameters) {
 		final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
 		List<MovieTO> resultMovies = null;
 		try {
@@ -78,8 +79,8 @@ public class MovieDAOImpl implements MovieDAO {
 				resultMovies = new ArrayList<MovieTO>();
 				log.debug("Got Connection!!!");
 				final MongoCollection<Document> moviesCollection = conn
-						.getMongoDBCollection(MongoDBCollections.MOVIES.getActualCollectionsName());
-				final Document filter = getCriteriaPopulatedDocument(filtersMap);
+						.getMongoDBCollection(MongoDBCollections.MOVIES_DETAILS.getActualCollectionsName());
+				final Document filter = constructSearchParametersDoc(searchParameters);
 				ArrayList<Document> resultsItr = moviesCollection.find(filter).into(new ArrayList<Document>());
 				for (Document doc : resultsItr) {
 					MovieTO movie = getPopulatedMovieTO(doc);
@@ -87,9 +88,9 @@ public class MovieDAOImpl implements MovieDAO {
 				}
 				log.debug("Movie : " + resultMovies);
 			}
-
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+			e.printStackTrace(); 
 		} finally {
 			conn.closeConnection();
 		}
@@ -106,9 +107,9 @@ public class MovieDAOImpl implements MovieDAO {
 				movies = new ArrayList<MovieTO>();
 				log.debug("Got Connection!!!");
 				final MongoCollection<Document> moviesCollection = conn
-						.getMongoDBCollection(MongoDBCollections.MOVIES.getActualCollectionsName());
+						.getMongoDBCollection(MongoDBCollections.MOVIES_DETAILS.getActualCollectionsName());
 				final Document bdb = new Document();
-				bdb.append(MovieDetailsFields.TITLE.getActualFieldName(), new Document("$in", titles));				
+				bdb.append(MovieDetailsFields.TITLE.getActualFieldName(), new Document("$in", titles.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));				
 				MongoCursor<Document> resultsCursor = moviesCollection.find(bdb).iterator();
 				while (resultsCursor.hasNext()) {
 					final Document result = resultsCursor.next();
@@ -123,7 +124,7 @@ public class MovieDAOImpl implements MovieDAO {
 			conn.closeConnection();
 		}
 
-		return null;
+		return movies;
 	}
 
 	@Override
@@ -135,6 +136,7 @@ public class MovieDAOImpl implements MovieDAO {
 		return genres;
 	}
 
+	@SuppressWarnings("unchecked")
 	private Set<String> fetchAllLists(final Document projections) {
 		final Set<String> genres = new TreeSet<>();
 		final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
@@ -164,21 +166,36 @@ public class MovieDAOImpl implements MovieDAO {
 		return genres;
 	}
 
+	@SuppressWarnings("unchecked")
 	private MovieTO getPopulatedMovieTO(Document document) {
 		MovieTO movie = null;
 		if (document != null) {
 			movie = new MovieTO();
 			movie.setTitle(document.getString(MovieDetailsFields.TITLE.getActualFieldName()));
 			movie.setYear(String.valueOf(document.getInteger(MovieDetailsFields.YEAR.getActualFieldName())));
-			movie.setType(document.getString(MovieDetailsFields.TYPE.getActualFieldName()));
-			movie.setImdbRating(document.getString(MovieDetailsFields.IMDB.getActualFieldName()));
+			movie.setType(document.getString(MovieDetailsFields.TYPE.getActualFieldName()));		
+			
+			final MoviesDetailTO movieDetails = new MoviesDetailTO();//TODO Populate
+			final ArrayList<String > genres = (ArrayList<String>)document.get(MovieDetailsFields.GENRES.getActualFieldName());
+			
+			final ArrayList<String > actors = (ArrayList<String>)document.get(MovieDetailsFields.ACTORS.getActualFieldName());
+			final List<String > directors =Arrays.asList(document.getString(MovieDetailsFields.DIRECTOR.getActualFieldName()));
+			
+			//final ArrayList<String > genres = (ArrayList<String>)document.get(MovieDetailsFields.GENRES.getActualFieldName());
+			
+			movieDetails.setGenres(genres.toArray(new String [genres.size()]));  
+			movieDetails.setActors(actors.toArray(new String [actors.size()]));  
+			movieDetails.setDirectors(directors.toArray(new String [directors.size()]));  
+			//movieDetails.set(genres.toArray(new String [genres.size()]));  
+			
+			movie.setMovieDetails(movieDetails);
 		}
 		return movie;
 	}
 
-	private Document getCriteriaPopulatedDocument(Map<String, Object> criteriasMap) {
-		Document doc = null;
-		if (criteriasMap != null) {
+	private Document constructSearchParametersDoc(MoviesDetailTO searchParameters) {
+		final Document doc = new Document();
+		/*if (criteriasMap != null) {
 			doc = new Document();
 			for (String key : criteriasMap.keySet()) {
 				if (key.equalsIgnoreCase(MovieDetailsFields.TITLE.getActualFieldName())) {
@@ -189,9 +206,24 @@ public class MovieDAOImpl implements MovieDAO {
 					doc.append(MovieDetailsFields.TYPE.getActualFieldName(), criteriasMap.get(key));
 				} else if (key.equalsIgnoreCase("YEAR")) {
 					doc.append(MovieDetailsFields.YEAR.getActualFieldName(), criteriasMap.get(key));
-				}
+				} 
 			}
+		}*/
+		
+		if(searchParameters!=null){
+			if (searchParameters.getTitle() != null) {
+				doc.append(MovieDetailsFields.TITLE.getActualFieldName(),
+						Pattern.compile((String) searchParameters.getTitle()));// Like
+			} else if (searchParameters.getYear() != null) {
+				doc.append(MovieDetailsFields.YEAR.getActualFieldName(), searchParameters.getYear());
+			} 
+			
+			//TODO Cover the ID search
 		}
+			
+			
+		
+		
 		return doc;
 	}
 
@@ -290,12 +322,19 @@ public class MovieDAOImpl implements MovieDAO {
 		}
 		return moviedDetailTO;
 	}
+	
+	@Override
+	public List<MoviesDetailTO> getMoviesByRating(Set<String> genres, Set<String> directors, Set<String> actors) throws WebRecommendationsException { 
+		return this.getMoviesByRating(genres, directors, actors, null);		
+	}
+
 
 	@Override
-	public List<MoviesDetailTO> getMoviesByRating(List<String> genres, List<String> directors, List<String> actors) {
+	public List<MoviesDetailTO> getMoviesByRating(Set<String> genres, Set<String> directors, Set<String> actors, Set <String> excludeMovies) 
+			throws WebRecommendationsException { 
 		final Document newQuery = new Document();
 		boolean isAtLeastOneParamsListPassed = false;
-		List<MoviesDetailTO> finalResults = null;
+		List<MoviesDetailTO> finalResults = null; 
 		if(genres!=null && genres.size()>0){
 			newQuery.append(MovieDetailsFields.GENRES.getActualFieldName(), 
 					new Document().append("$in", genres.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
@@ -305,6 +344,7 @@ public class MovieDAOImpl implements MovieDAO {
 		if(directors!=null && directors.size()>0){
 			newQuery.append(MovieDetailsFields.DIRECTOR.getActualFieldName(), 
 					new Document().append("$in", directors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+			
 			isAtLeastOneParamsListPassed = true;
 		}
 		
@@ -312,6 +352,11 @@ public class MovieDAOImpl implements MovieDAO {
 			newQuery.append(MovieDetailsFields.ACTORS.getActualFieldName(),
 					new Document().append("$in", actors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
 			isAtLeastOneParamsListPassed = true;
+		}
+		
+		if(excludeMovies!=null && excludeMovies.size()>0){
+			newQuery.append(MovieDetailsFields.TITLE.getActualFieldName(),
+					new Document().append("$nin", excludeMovies.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
 		}
 		
 		if(isAtLeastOneParamsListPassed){
@@ -340,7 +385,9 @@ public class MovieDAOImpl implements MovieDAO {
 			} finally {
 				conn.closeConnection();
 			}
-		}	
+		}	else {
+			throw new WebRecommendationsException("No Parameters available, to generate recommendations based on");
+		}
 		
 		return finalResults;
 	}

@@ -3,6 +3,18 @@ package com.pradeep.menu.bean.to.movie;
 import java.util.Arrays;
 
 public class MoviesDetailTO {
+	
+	
+	
+	public MoviesDetailTO() {
+	
+	}
+	
+	public MoviesDetailTO(String title) {
+		super();
+		this.title = title;
+	}
+	
 	@Override
 	public String toString() {
 		return "MoviesDetailTO [title=" + title + ", year=" + year + ", rated=" + rated + ", released=" + released

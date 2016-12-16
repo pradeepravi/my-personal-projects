@@ -103,6 +103,7 @@ public class UserDAOImpl implements UserDAO {
 		return usersList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
 		log.debug("UserDAOImpl : getAllUsers: start");

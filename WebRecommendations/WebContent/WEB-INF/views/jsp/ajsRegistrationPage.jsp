@@ -35,7 +35,7 @@
 				<label class="col-md-2 control-label" for="fn">First name</label>
 				<div class="col-md-10">
 					<input id="fn" name="firstName" type="text" placeholder="first name"
-						class="form-control input-md" required="">
+						class="form-control input-md" required>
 				</div>
 			</div>
 			<!-- Text input-->
@@ -43,7 +43,7 @@
 				<label class="col-md-2 control-label" for="ln">Last name</label>
 				<div class="col-md-10">
 					<input id="ln" name="lastName" type="text" placeholder="last name"
-						class="form-control input-md" required="">
+						class="form-control input-md" required>
 
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 				<label class="col-md-2 control-label" for="mn">Middle Name</label>
 				<div class="col-md-10">
 					<input id="mn" name="middleName" type="text" placeholder="Middle Name"
-						class="form-control input-md" required="">
+						class="form-control input-md" required>
 				</div>
 			</div>
 
@@ -62,7 +62,7 @@
 				<label class="col-md-2 control-label" for="email">Email</label>
 				<div class="col-md-10">
 					<input id="email" name="email" type="text" placeholder="email"
-						class="form-control input-md" required="">
+						class="form-control input-md" required>
 
 				</div>
 			</div>
