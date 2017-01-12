@@ -23,10 +23,10 @@ public interface MovieDAO {
 
 	List<MoviesDetailTO> getMoviesForDirectors(List<String> actors) throws WebRecommendationsException ;
 
-	List<MoviesDetailTO> getMoviesForGenres(List<String> actors) throws WebRecommendationsException ;
+	List<MoviesDetailTO> getMoviesForGenres(List<String> genres) throws WebRecommendationsException ;
 	
 	List<MoviesDetailTO> getMoviesByRating(Set<String> genres, Set<String> directors, Set<String> actors) throws WebRecommendationsException ;
 	
-	List<MoviesDetailTO> getMoviesByRating(Set<String> genres, Set<String> directors, Set<String> actors, Set <String> excludeMovies) throws WebRecommendationsException ;
+	List<MoviesDetailTO> getMoviesByRating(Set<String> genres, Set<String> directors, Set<String> actors, Set <String> excludeTitles) throws WebRecommendationsException ;
 
 }

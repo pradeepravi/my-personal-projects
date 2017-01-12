@@ -280,7 +280,7 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public List<MoviesDetailTO> getMoviesForGenres(List<String> actors) {
+	public List<MoviesDetailTO> getMoviesForGenres(List<String> genres) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -333,25 +333,25 @@ public class MovieDAOImpl implements MovieDAO {
 	public List<MoviesDetailTO> getMoviesByRating(Set<String> genres, Set<String> directors, Set<String> actors, Set <String> excludeMovies) 
 			throws WebRecommendationsException { 
 		final Document newQuery = new Document();
-		boolean isAtLeastOneParamsListPassed = false;
+		boolean isAtLeastOneParamsPassed = false;
 		List<MoviesDetailTO> finalResults = null; 
 		if(genres!=null && genres.size()>0){
 			newQuery.append(MovieDetailsFields.GENRES.getActualFieldName(), 
 					new Document().append("$in", genres.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
-			isAtLeastOneParamsListPassed = true;
+			isAtLeastOneParamsPassed = true;
 		}
 		
 		if(directors!=null && directors.size()>0){
 			newQuery.append(MovieDetailsFields.DIRECTOR.getActualFieldName(), 
 					new Document().append("$in", directors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
 			
-			isAtLeastOneParamsListPassed = true;
+			isAtLeastOneParamsPassed = true;
 		}
 		
 		if(actors!=null && actors.size()>0){
 			newQuery.append(MovieDetailsFields.ACTORS.getActualFieldName(),
 					new Document().append("$in", actors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
-			isAtLeastOneParamsListPassed = true;
+			isAtLeastOneParamsPassed = true;
 		}
 		
 		if(excludeMovies!=null && excludeMovies.size()>0){
@@ -359,7 +359,7 @@ public class MovieDAOImpl implements MovieDAO {
 					new Document().append("$nin", excludeMovies.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
 		}
 		
-		if(isAtLeastOneParamsListPassed){
+		if(isAtLeastOneParamsPassed){
 			final MongoDBConnection conn = new MongoDBConnection(MongoDBDatabase.MOVIES_DB.getDBName());
 			try {
 				if (conn != null) {
