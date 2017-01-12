@@ -29,7 +29,7 @@
 						<img src="..." alt="...">
 						<div class="caption">
 							<h3>Thumbnail label</h3>
-							<p>...</p>
+							<p> </p>
 							<p>
 								<a href="#" class="btn btn-primary" role="button">Like</a> 
 								<a href="#" class="btn btn-default" role="button">Dislike</a>

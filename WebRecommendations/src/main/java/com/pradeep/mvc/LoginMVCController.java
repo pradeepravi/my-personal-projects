@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pradeep.menu.bean.to.user.StaffTO;
 import com.pradeep.menu.bean.to.user.UserTO;
+import com.pradeep.menu.bo.movie.MovieService;
+import com.pradeep.menu.bo.recommendation.RecommendationFactory;
+import com.pradeep.menu.bo.recommendation.RecommendationService;
+import com.pradeep.menu.bo.recommendation.RecommendationType;
+import com.pradeep.menu.bo.recommendation.movie.MovieRecommendationsServiceImpl;
 import com.pradeep.menu.bo.user.StaffService;
 import com.pradeep.menu.bo.user.UserService;
 import com.pradeep.menu.dao.user.CommonUtils;
@@ -25,6 +30,9 @@ public class LoginMVCController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	MovieService movieService;
 	
 	final Logger log = LogManager.getLogger(LoginMVCController.class); 
 
@@ -84,10 +92,26 @@ public class LoginMVCController {
 		
 		user = userService.save(user);
 		
-		return "ajsUserPreferencesHome";
+		
+		
+		return "/ajsUserPreferencesHome";
 	}
 	
-	
+	@RequestMapping(value = { "/ajsUserPreferencesHome" }, method = RequestMethod.POST)
+	public String ajsUserPreferencesHome() 
+			 {
+		log.debug("LoginMVCController : ajsRegisterNewUser : Start  ");	
+		//TODO Fetch my preferences based recommendations
+		
+		//TODO fetch list of genres and posters from the first of the top selections in that genre
+		RecommendationService movieRecommendations = RecommendationFactory.getInstance(RecommendationType.MOVIES);
+		
+
+		
+		
+		
+		return "/ajsUserPreferencesHome";
+	}
 	
 	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
 	public String listUsers(ModelMap model) {

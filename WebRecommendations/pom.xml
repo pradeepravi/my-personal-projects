@@ -27,7 +27,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.pradeep.menu</groupId>
-			<artifactId>emenu-service</artifactId>
+			<artifactId>recommendation-engine</artifactId>
 			<version>1.0.5</version>
 		</dependency>
 		<dependency>
@@ -87,7 +87,7 @@
 					<version>2.4</version>
 					<configuration>
 						<warSourceDirectory>WebContent</warSourceDirectory>
-						<warName>EmenuWebService</warName>
+						<warName>WebRecommendations</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 						<overwrite>true</overwrite>
 						<resources>
