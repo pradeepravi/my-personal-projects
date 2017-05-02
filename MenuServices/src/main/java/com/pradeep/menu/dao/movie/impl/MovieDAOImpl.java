@@ -15,6 +15,7 @@ import org.bson.BsonString;
 import org.bson.BsonType;
 import org.bson.BsonValue;
 import org.bson.Document;
+import org.springframework.stereotype.Component;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -25,6 +26,7 @@ import com.pradeep.menu.dao.movie.MovieDAO;
 import com.pradeep.menu.util.exception.WebRecommendationsException;
 import com.pradeep.menu.util.mongodb.MongoDBConnection;
  
+@Component("movieDAOImpl")
 public class MovieDAOImpl implements MovieDAO {
 	
 

@@ -95,7 +95,7 @@
 					<configuration>
 						<!-- <source>1.8</source> <target>1.8</target> -->
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>MenuService</warName>
+						<warName>recommendation-engine</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 						<overwrite>true</overwrite>
 						<resources>
@@ -109,6 +109,6 @@
 			</plugins>
 		</pluginManagement>
 
-		<finalName>MenuService</finalName>
+		<finalName>recommendation-engine</finalName>
 	</build>
 </project> 

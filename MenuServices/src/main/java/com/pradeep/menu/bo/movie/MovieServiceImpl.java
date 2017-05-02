@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.pradeep.menu.bean.to.movie.MovieTO;
 import com.pradeep.menu.dao.movie.MovieDAO;
 import com.pradeep.menu.util.exception.WebRecommendationsException;
  
+@Component("movieServiceImpl")
 public class MovieServiceImpl implements MovieService {
 
 	@Autowired
@@ -42,6 +44,12 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<MovieTO> getMovies(List<String> movies) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieTO> getMovieForGenre(List<String> genres) {
 		// TODO Auto-generated method stub
 		return null;
 	}

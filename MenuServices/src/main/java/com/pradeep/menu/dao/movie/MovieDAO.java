@@ -3,10 +3,13 @@ package com.pradeep.menu.dao.movie;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import com.pradeep.menu.bean.to.movie.MovieTO;
 import com.pradeep.menu.bean.to.movie.MoviesDetailTO;
 import com.pradeep.menu.util.exception.WebRecommendationsException;
 
+@Component("movieDAO")
 public interface MovieDAO {
 
 	List<MovieTO> getMovie(MoviesDetailTO searchParameter) throws WebRecommendationsException ;

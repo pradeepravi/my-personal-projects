@@ -74,6 +74,12 @@
 			<version>2.6</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.pradeep.menu</groupId>
+			<artifactId>recommendation-engine</artifactId>
+			<version>1.0.5</version>
+		</dependency>
 	</dependencies>
 
 
@@ -100,6 +106,6 @@
 			</plugins>
 		</pluginManagement>
 
-		<finalName>EmenuWebService</finalName>
+		<finalName>WebRecommendations</finalName>
 	</build>
 </project> 
