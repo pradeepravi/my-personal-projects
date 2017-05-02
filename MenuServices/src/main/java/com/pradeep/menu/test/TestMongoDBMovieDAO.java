@@ -48,7 +48,7 @@ public class TestMongoDBMovieDAO {
 	@Test
 	public void testGetAllGenres(){
 		try {
-			System.out.println( "ALL DIRECTORS - "+movieDao.getAllGenreNames().size());
+			System.out.println( "ALL DIRECTORS - "+movieDao.getAllGenreNames());
 		} catch (WebRecommendationsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class TestMongoDBMovieDAO {
 	@Test
 	public void testGetAllDirectors(){
 		try {
-			System.out.println( "ALL DIRECTORS-"+movieDao.getAllDirectors().size());
+			System.out.println( "ALL DIRECTORS-"+movieDao.getAllDirectors());
 		} catch (WebRecommendationsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
