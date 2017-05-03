@@ -51,31 +51,36 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 					.filter(m -> (m.getMovieDetails() != null && m.getMovieDetails().getGenres() != null))
 					.forEach(n -> {
 						genres.addAll(Arrays.asList(n.getMovieDetails().getGenres()));
-						actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));
-						directors.addAll(Arrays.asList(n.getMovieDetails().getDirectors()));
+						//TODO - How could I apply the Actors and the directors ??
+						//actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));
+						//directors.addAll(Arrays.asList(n.getMovieDetails().getDirectors()));
 						alreadyWatchedMovie.add(n.getTitle());
 					});
 
-			List<MoviesDetailTO> movies = movieDao.getMoviesByRating(genres, directors, actors);
-			System.out.println("********************** NON Excluded " + movies.size());
+//			List<MoviesDetailTO> movies = movieDao.getMoviesByRating(genres, directors, actors);
+//			System.out.println("********************** NON Excluded " + movies.size());
 
-			if (movies != null) {
-				recommendations = new ArrayList<>();
-				final Recommendation recomm = new Recommendation();
-				recomm.setRecommendationType(RecommendationType.MOVIES);
-				recomm.setRecommendation(movies);
+			List<MoviesDetailTO> movies2 = movieDao.getMoviesByRating(genres, directors, actors, alreadyWatchedMovie);
+			System.out.println("********************** Excluded " + movies2.size());
 			
-				recommendations.add(recomm);
-				
-			}
-			// List<MoviesDetailTO> movies2 = movieDao.getMoviesByRating(genres,
-			// directors, actors, alreadyWatchedMovie);
-			// System.out.println("********************** Excluded " +
-			// movies2.size());
+			Recommendation recomm = getPopulatedRecommendations(movies2);
+
+			recommendations = new ArrayList<>();
+			recommendations.add(recomm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return recommendations;
+	}
+
+	private Recommendation getPopulatedRecommendations(List<MoviesDetailTO> movies) {
+		Recommendation recomm = null;
+		if (movies != null) {
+			recomm = new Recommendation();
+			recomm.setRecommendationType(RecommendationType.MOVIES);
+			recomm.setRecommendation(movies);
+		}
+		return recomm;
 	}
 
 	@Override
