@@ -123,10 +123,16 @@ public class TestMongoDBMovieDAO {
 		
 		Map<RecommendationParam, List<String>> paramsMap = new HashMap<>();
 		List<String> list = new ArrayList<>();
-		list .add("Jason");
+		list .add("Time");
 		paramsMap.put(RecommendationParam.MOVIE_TITLES, list);
 		try {
-			System.out.println(" [testGetAllMoviesForActorsOrderByRating] ***** "+movieRecommendations.getRecommendations(paramsMap).size());
+			//System.out.println(" [testGetAllMoviesForActorsOrderByRating] ***** "+movieRecommendations.getRecommendations(paramsMap).size());
+			System.out.println("*****************For Watched Movie -> "+list);
+			movieRecommendations.getRecommendations(paramsMap).forEach(m->{
+				m.getRecommendation().forEach(n->{
+					System.out.println(n.getTitle());
+				});
+			});
 
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block

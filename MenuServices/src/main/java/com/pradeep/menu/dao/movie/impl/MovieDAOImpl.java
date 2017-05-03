@@ -111,7 +111,8 @@ public class MovieDAOImpl implements MovieDAO {
 				final MongoCollection<Document> moviesCollection = conn
 						.getMongoDBCollection(MongoDBCollections.MOVIES_DETAILS.getActualCollectionsName());
 				final Document bdb = new Document();
-				bdb.append(MovieDetailsFields.TITLE.getActualFieldName(), new Document("$in", titles.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));				
+				bdb.append(MovieDetailsFields.TITLE.getActualFieldName(), new Document(
+						"$in", titles.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));				
 				MongoCursor<Document> resultsCursor = moviesCollection.find(bdb).iterator();
 				while (resultsCursor.hasNext()) {
 					final Document result = resultsCursor.next();
@@ -339,26 +340,38 @@ public class MovieDAOImpl implements MovieDAO {
 		List<MoviesDetailTO> finalResults = null; 
 		if(genres!=null && genres.size()>0){
 			newQuery.append(MovieDetailsFields.GENRES.getActualFieldName(), 
-					new Document().append("$in", genres.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+					new Document().append("$in", genres.stream().
+							filter(m -> m!=null).
+								map(m -> Pattern.compile(m)).
+									collect(Collectors.toList())));
 			isAtLeastOneParamsPassed = true;
 		}
 		
 		if(directors!=null && directors.size()>0){
 			newQuery.append(MovieDetailsFields.DIRECTOR.getActualFieldName(), 
-					new Document().append("$in", directors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+					new Document().append("$in", directors.stream().
+							filter(m -> m!=null).
+								map(m -> Pattern.compile(m)).
+									collect(Collectors.toList())));
 			
 			isAtLeastOneParamsPassed = true;
 		}
 		
 		if(actors!=null && actors.size()>0){
 			newQuery.append(MovieDetailsFields.ACTORS.getActualFieldName(),
-					new Document().append("$in", actors.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+					new Document().append("$in", actors.stream().
+							filter(m -> m!=null).
+								map(m -> Pattern.compile(m)).
+									collect(Collectors.toList())));
 			isAtLeastOneParamsPassed = true;
 		}
 		
 		if(excludeMovies!=null && excludeMovies.size()>0){
 			newQuery.append(MovieDetailsFields.TITLE.getActualFieldName(),
-					new Document().append("$nin", excludeMovies.stream().map(m -> Pattern.compile(m)).collect(Collectors.toList())));
+					new Document().append("$nin", excludeMovies.stream().
+							filter(m -> m!=null).
+								map(m -> Pattern.compile(m)).
+									collect(Collectors.toList())));
 		}
 		
 		if(isAtLeastOneParamsPassed){

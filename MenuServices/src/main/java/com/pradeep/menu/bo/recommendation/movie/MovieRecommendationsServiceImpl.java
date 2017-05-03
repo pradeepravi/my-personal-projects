@@ -51,27 +51,37 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 					.filter(m -> (m.getMovieDetails() != null && m.getMovieDetails().getGenres() != null))
 					.forEach(n -> {
 						genres.addAll(Arrays.asList(n.getMovieDetails().getGenres()));
-						//TODO - How could I apply the Actors and the directors ??
-						actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));
-						directors.addAll(Arrays.asList(n.getMovieDetails().getDirectors()));
+						// TODO - How could I apply the Actors and the directors
+						// ??
+						if (n.getMovieDetails().getActors() != null) {
+							actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));
+						}
+
+						if (n.getMovieDetails().getDirectors() != null) {
+							System.out.println("Director - "+n.getMovieDetails().getDirectors());
+							directors.addAll(Arrays.asList(n.getMovieDetails().getDirectors()));
+						}
+
 						alreadyWatchedMovie.add(n.getTitle());
 					});
 
-
 			List<MoviesDetailTO> movies2 = movieDao.getMoviesByRating(genres, directors, null, alreadyWatchedMovie);
 			System.out.println("********************** Excluded " + movies2.size());
-			
-			if(movies2!=null){
-				//Since already found in the next search we do not want the same movies to be returned 
-				movies2.forEach(m-> alreadyWatchedMovie.add(m.getTitle()));
-				//TODO Same Genres + Actors individually Searched 
+
+			if (movies2 != null) {
+				// Since already found in the next search we do not want the
+				// same movies to be returned
+				movies2.forEach(m -> alreadyWatchedMovie.add(m.getTitle()));
+				// TODO Same Genres + Actors individually Searched
 			}
-			
+
 			Recommendation recomm = getPopulatedRecommendations(movies2);
 
 			recommendations = new ArrayList<>();
 			recommendations.add(recomm);
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 		}
 		return recommendations;
@@ -91,9 +101,5 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 	public List<Recommendation> getRecommendations(Map<RecommendationParam, List<String>> parameters,
 			List<String> exceptions) throws NoSuchMethodException {
 		throw new NoSuchMethodException("Not Yet Implemented");
-	}	
+	}
 }
-
-
-
-
