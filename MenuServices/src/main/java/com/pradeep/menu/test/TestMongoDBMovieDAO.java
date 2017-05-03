@@ -118,12 +118,12 @@ public class TestMongoDBMovieDAO {
 		/*List<String> directors = new ArrayList<>();
 		directors.add("Brian");*/
 			
-		List<String> watchedMovies = new ArrayList<>();
-		watchedMovies.add("The Martian");
+		/*List<String> watchedMovies = new ArrayList<>();
+		watchedMovies.add("The Martian");*/
 		
 		Map<RecommendationParam, List<String>> paramsMap = new HashMap<>();
 		List<String> list = new ArrayList<>();
-		list .add("Bourne");
+		list .add("Jason");
 		paramsMap.put(RecommendationParam.MOVIE_TITLES, list);
 		try {
 			System.out.println(" [testGetAllMoviesForActorsOrderByRating] ***** "+movieRecommendations.getRecommendations(paramsMap).size());

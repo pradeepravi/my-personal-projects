@@ -1,5 +1,6 @@
 package com.pradeep.menu.bo.recommendation.movie;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.pradeep.menu.bean.to.movie.MoviesDetailTO;
 import com.pradeep.menu.bo.recommendation.Recommendation;
 import com.pradeep.menu.bo.recommendation.RecommendationParam;
 import com.pradeep.menu.bo.recommendation.RecommendationService;
+import com.pradeep.menu.bo.recommendation.RecommendationType;
 import com.pradeep.menu.dao.movie.ContentsDAOFactory;
 import com.pradeep.menu.dao.movie.MovieDAO;
 
@@ -36,14 +38,8 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 	private List<Recommendation> fetchRecommendationsForMoviesWatched(List<String> movieTitles) {
 		List<Recommendation> recommendations = null;
 		try {
-			final MovieDAO movieDao = ContentsDAOFactory.getMoviesDAOInstance("Movies");// TODO
-																						// Replace
-																						// with
-																						// proper
-																						// TYPE
-																						// passed
-																						// in
-																						// Param
+			// TODO Replace with proper TYPE passed in Param
+			final MovieDAO movieDao = ContentsDAOFactory.getMoviesDAOInstance("Movies");
 			List<MovieTO> fetchedDetails = movieDao.getMovies(movieTitles);
 
 			final Set<String> genres = new HashSet<>();
@@ -63,8 +59,19 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 			List<MoviesDetailTO> movies = movieDao.getMoviesByRating(genres, directors, actors);
 			System.out.println("********************** NON Excluded " + movies.size());
 
-			List<MoviesDetailTO> movies2 = movieDao.getMoviesByRating(genres, directors, actors, alreadyWatchedMovie);
-			System.out.println("********************** Excluded " + movies2.size());
+			if (movies != null) {
+				recommendations = new ArrayList<>();
+				final Recommendation recomm = new Recommendation();
+				recomm.setRecommendationType(RecommendationType.MOVIES);
+				recomm.setRecommendation(movies);
+			
+				recommendations.add(recomm);
+				
+			}
+			// List<MoviesDetailTO> movies2 = movieDao.getMoviesByRating(genres,
+			// directors, actors, alreadyWatchedMovie);
+			// System.out.println("********************** Excluded " +
+			// movies2.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
