@@ -25,7 +25,7 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 		for (RecommendationParam temp : params.keySet()) {
 			switch (temp) {
 			case MOVIE_TITLES:
-				recommendations = fetchRecommendationsForMoviesWatched(params.get(temp));
+				recommendations = getRecommendationsForMoviesAlreadySeen(params.get(temp));
 				break;
 
 			default:
@@ -35,7 +35,7 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 		return recommendations;
 	}
 
-	private List<Recommendation> fetchRecommendationsForMoviesWatched(List<String> movieTitles) {
+	private List<Recommendation> getRecommendationsForMoviesAlreadySeen(List<String> movieTitles) {
 		List<Recommendation> recommendations = null;
 		try {
 			// TODO Replace with proper TYPE passed in Param
@@ -52,16 +52,20 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 					.forEach(n -> {
 						genres.addAll(Arrays.asList(n.getMovieDetails().getGenres()));
 						//TODO - How could I apply the Actors and the directors ??
-						//actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));
+						actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));
 						directors.addAll(Arrays.asList(n.getMovieDetails().getDirectors()));
 						alreadyWatchedMovie.add(n.getTitle());
 					});
 
-//			List<MoviesDetailTO> movies = movieDao.getMoviesByRating(genres, directors, actors);
-//			System.out.println("********************** NON Excluded " + movies.size());
 
-			List<MoviesDetailTO> movies2 = movieDao.getMoviesByRating(genres, directors, actors, alreadyWatchedMovie);
+			List<MoviesDetailTO> movies2 = movieDao.getMoviesByRating(genres, directors, null, alreadyWatchedMovie);
 			System.out.println("********************** Excluded " + movies2.size());
+			
+			if(movies2!=null){
+				//Since already found in the next search we do not want the same movies to be returned 
+				movies2.forEach(m-> alreadyWatchedMovie.add(m.getTitle()));
+				//TODO Same Genres + Actors individually Searched 
+			}
 			
 			Recommendation recomm = getPopulatedRecommendations(movies2);
 
@@ -87,5 +91,9 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 	public List<Recommendation> getRecommendations(Map<RecommendationParam, List<String>> parameters,
 			List<String> exceptions) throws NoSuchMethodException {
 		throw new NoSuchMethodException("Not Yet Implemented");
-	}
+	}	
 }
+
+
+
+
