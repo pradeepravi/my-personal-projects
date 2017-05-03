@@ -53,7 +53,7 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 						genres.addAll(Arrays.asList(n.getMovieDetails().getGenres()));
 						//TODO - How could I apply the Actors and the directors ??
 						//actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));
-						//directors.addAll(Arrays.asList(n.getMovieDetails().getDirectors()));
+						directors.addAll(Arrays.asList(n.getMovieDetails().getDirectors()));
 						alreadyWatchedMovie.add(n.getTitle());
 					});
 
