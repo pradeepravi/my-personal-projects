@@ -106,10 +106,10 @@
 				<label class="col-md-2 control-label" for="Training">User Type</label>
 				<div class="col-md-10">
 					<label class="radio-inline" for="userType-0"> 
-						<input type="radio" name="userType" id="userType-0" value="normalUser" checked="checked">Normal
+						<input type="radio" name="userType" id="userType-0" value="NORMAL" checked="checked">Normal
 					</label> 
 					<label class="radio-inline" for="userType-1"> 
-						<input type="radio" name="userType" id="userType-1" value="staffUser">Staff
+						<input type="radio" name="userType" id="userType-1" value="STAFF">Staff
 					</label>
 				</div>
 			</div>
