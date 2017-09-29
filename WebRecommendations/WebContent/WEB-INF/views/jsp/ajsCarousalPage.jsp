@@ -47,7 +47,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
     <c:forEach items="${recommendations}" var="recomm" >
-	    <c:forEach items="${recomm.recommendationsList}" varStatus="loop"  var="movie" begin="0" end="4" >
+	    <c:forEach items="${recomm.recommendationsList}" varStatus="loop"  var="movie" begin="0" end="5" >
 			<div class="item <c:if test = '${loop.index==0}'>active</c:if>" >
 		        <img src="${movie.posters[0]}" alt="${movie.title}" >
 		    </div>
