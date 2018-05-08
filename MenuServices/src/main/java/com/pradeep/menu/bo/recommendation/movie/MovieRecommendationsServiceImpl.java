@@ -52,6 +52,7 @@ public class MovieRecommendationsServiceImpl implements RecommendationService {
 					.forEach(n -> {
 						genres.addAll(Arrays.asList(n.getMovieDetails().getGenres()));
 						// TODO - How could I apply the Actors and the directors
+						
 						// ??
 						if (n.getMovieDetails().getActors() != null) {
 							actors.addAll(Arrays.asList(n.getMovieDetails().getActors()));

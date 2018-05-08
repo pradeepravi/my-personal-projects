@@ -338,16 +338,23 @@ public class MovieDAOImpl implements MovieDAO {
 		final Document newQuery = new Document();
 		boolean isAtLeastOneParamsPassed = false;
 		List<MoviesDetailTO> finalResults = null; 
-		if(genres!=null && genres.size()>0){
+		
+		/*if(genres!=null && genres.size()>0){
 			newQuery.append(MovieDetailsFields.GENRES.getActualFieldName(), 
 					new Document().append("$in", genres.stream().
 							filter(m -> m!=null).
 								map(m -> Pattern.compile(m)).
 									collect(Collectors.toList())));
 			isAtLeastOneParamsPassed = true;
-		}
+		}*/
 		
-		if(directors!=null && directors.size()>0){
+		updateQuery(genres, newQuery, MovieDetailsFields.GENRES);
+		
+		updateQuery(directors, newQuery, MovieDetailsFields.DIRECTOR);
+		
+		updateQuery(actors, newQuery, MovieDetailsFields.ACTORS);
+		
+		/*if(directors!=null && directors.size()>0){
 			newQuery.append(MovieDetailsFields.DIRECTOR.getActualFieldName(), 
 					new Document().append("$in", directors.stream().
 							filter(m -> m!=null).
@@ -364,8 +371,11 @@ public class MovieDAOImpl implements MovieDAO {
 								map(m -> Pattern.compile(m)).
 									collect(Collectors.toList())));
 			isAtLeastOneParamsPassed = true;
-		}
+		}*/
 		
+		if(newQuery.isEmpty()){
+			isAtLeastOneParamsPassed = true;
+		}
 		if(excludeMovies!=null && excludeMovies.size()>0){
 			newQuery.append(MovieDetailsFields.TITLE.getActualFieldName(),
 					new Document().append("$nin", excludeMovies.stream().
@@ -405,6 +415,20 @@ public class MovieDAOImpl implements MovieDAO {
 		}
 		
 		return finalResults;
+	}
+	
+	
+	private boolean updateQuery(Set<String> selectedParams,Document newQuery, MovieDetailsFields movieDetails){
+		boolean isQueryUpdated = false;
+		if(selectedParams!=null && selectedParams.size()>0){
+			newQuery.append(movieDetails.getActualFieldName(), 
+					new Document().append("$in", selectedParams.stream().
+							filter(m -> m!=null).
+								map(m -> Pattern.compile(m)).
+									collect(Collectors.toList())));
+			isQueryUpdated = true;
+		}
+		return isQueryUpdated;
 	}
 	
 	
