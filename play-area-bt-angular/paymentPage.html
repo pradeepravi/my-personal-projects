@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Hello AngularJS - Hello World</title>
+	<link rel="stylesheet"	href="./ext/bootstrap.min.css">
+	<script	src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script	src="./ext/bootstrap.min.js"></script>
+	<script	src="https://code.angularjs.org/1.2.7/angular.js"></script>
+	<script	src="./ext/angCtrl.js"></script>
+	<script	src="./ext/angService.js"></script>
+
+</head>
+<body ng-app="myApp">
+	<header class="navbar navbar-static-top" id="top" role="banner">
+
+	<!-- Bootstrap inspired Braintree Hosted Fields example -->
+<div ng-controller="indexCtrl" class="panel panel-default bootstrap-basic">
+  <div class="panel-heading">
+    <h3 class="panel-title">Enter Card Details</h3>
+  </div>
+  <form class="panel-body">
+    <div class="row">
+      <div class="form-group col-sm-8">
+        <label class="control-label">Card Number</label>
+        <!--  Hosted Fields div container -->
+        <div class="form-control" id="card-number"></div>
+        <span class="helper-text"></span>
+      </div>
+      <div class="form-group col-sm-4">
+        <div class="row">
+          <label class="control-label col-xs-12">Expiration Date</label>
+          <div class="col-xs-6">
+            <!--  Hosted Fields div container -->
+            <div class="form-control" id="expiration-month"></div>
+          </div>
+          <div class="col-xs-6">
+            <!--  Hosted Fields div container -->
+            <div class="form-control" id="expiration-year"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label class="control-label">Security Code</label>
+        <!--  Hosted Fields div container -->
+        <div class="form-control" id="cvv"></div>
+      </div>
+      <div class="form-group col-sm-6">
+        <label class="control-label">Zipcode</label>
+        <!--  Hosted Fields div container -->
+        <div class="form-control" id="postal-code"></div>
+      </div>
+    </div>
+
+
+    <button value="submit" id="submit" class="btn btn-success btn-lg center-block">Pay with <span id="card-type">Card</span></button>
+  </form>
+
+<!-- Load the required client component. -->
+<script src="https://js.braintreegateway.com/web/3.32.1/js/client.min.js"></script>
+
+<!-- Load Hosted Fields component. -->
+<script src="https://js.braintreegateway.com/web/3.32.1/js/hosted-fields.min.js"></script>
+</body>
+</html>
