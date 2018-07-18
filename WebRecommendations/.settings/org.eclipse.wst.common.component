@@ -7,6 +7,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <dependent-module archiveName="recommendation-engine-1.0.5.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/recommendation-engine/recommendation-engine">
             <dependency-type>uses</dependency-type>
         </dependent-module>
