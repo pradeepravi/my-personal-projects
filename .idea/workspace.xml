@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="55fe6b42-9633-45d6-9c6e-d3d0d40702b2" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.classpath" afterPath="$PROJECT_DIR$/WebRecommedationsService/.classpath" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.gitignore" afterPath="$PROJECT_DIR$/WebRecommedationsService/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.project" afterPath="$PROJECT_DIR$/WebRecommedationsService/.project" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.settings/org.eclipse.jdt.core.prefs" afterPath="$PROJECT_DIR$/WebRecommedationsService/.settings/org.eclipse.jdt.core.prefs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.settings/org.eclipse.m2e.core.prefs" afterPath="$PROJECT_DIR$/WebRecommedationsService/.settings/org.eclipse.m2e.core.prefs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.settings/org.eclipse.wst.common.component" afterPath="$PROJECT_DIR$/WebRecommedationsService/.settings/org.eclipse.wst.common.component" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.settings/org.eclipse.wst.common.project.facet.core.xml" afterPath="$PROJECT_DIR$/WebRecommedationsService/.settings/org.eclipse.wst.common.project.facet.core.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/.settings/org.eclipse.wst.validation.prefs" afterPath="$PROJECT_DIR$/WebRecommedationsService/.settings/org.eclipse.wst.validation.prefs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/bin/.gitignore" afterPath="$PROJECT_DIR$/WebRecommedationsService/bin/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/pom.xml" afterPath="$PROJECT_DIR$/WebRecommedationsService/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/META-INF/MANIFEST.MF" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/entity/User.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/entity/User.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/entity/UserType.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/entity/UserType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/movie/AwardTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/movie/AwardTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/movie/ImdbRatingTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/movie/ImdbRatingTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/movie/MetaCriticRatingTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/movie/MetaCriticRatingTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/movie/MovieRating.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/movie/MovieRating.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/movie/MovieTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/movie/MovieTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/movie/MoviesDetailTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/movie/MoviesDetailTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/movie/TomatoRatingTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/movie/TomatoRatingTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/user/CustomerTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/user/CustomerTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/user/StaffTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/user/StaffTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bean/to/user/UserTO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/user/UserTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/movie/MovieDetailsService.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/movie/MovieDetailsService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/movie/MovieService.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/movie/MovieService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/movie/MovieServiceImpl.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/movie/MovieServiceImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/recommendation/Recommendation.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/recommendation/Recommendation.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationFactory.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationParam.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationParam.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationService.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationType.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/recommendation/RecommendationType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/recommendation/movie/MovieRecommendationsServiceImpl.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/recommendation/movie/MovieRecommendationsServiceImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/user/StaffService.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/StaffService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/user/UserService.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/UserService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/user/customer/CustomerService.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/customer/CustomerService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/user/impl/StaffServiceImpl.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/StaffServiceImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/bo/user/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/UserServiceImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/movie/ContentsDAOFactory.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/movie/ContentsDAOFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/movie/MovieDAO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/movie/MovieDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/movie/MoviesDetailsDAO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/movie/MoviesDetailsDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/movie/impl/MovieDAOImpl.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/movie/impl/MovieDAOImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/user/CommonUtils.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/CommonUtils.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/user/UserDAO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/UserDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/user/UserMoviePreferenceDAO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/UserMoviePreferenceDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/user/UserTypeDAO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/UserTypeDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/user/impl/UserDAOImpl.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/impl/UserDAOImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/dao/user/impl/UserTypeDAOImpl.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/impl/UserTypeDAOImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/test/TestHibernateCRUD.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/test/TestHibernateCRUD.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/test/TestMongoDBMovieDAO.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/test/TestMongoDBMovieDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/util/exception/WebRecommendationsException.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/util/exception/WebRecommendationsException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/util/hibernate/HibernateUtil.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/util/hibernate/HibernateUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/java/com/pradeep/menu/util/mongodb/MongoDBConnection.java" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/util/mongodb/MongoDBConnection.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/MenuServices/src/main/resources/log4j2.xml" afterPath="$PROJECT_DIR$/WebRecommedationsService/src/main/resources/log4j2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRecommendations/WebContent/WEB-INF/views/jsp/ajsRegistrationPage.jsp" afterPath="$PROJECT_DIR$/WebRecommendations/WebContent/WEB-INF/views/jsp/ajsRegistrationPage.jsp" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="StaffServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/StaffServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1825">
+              <caret line="86" column="42" lean-forward="false" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1375">
+              <caret line="55" column="20" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDAOImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/impl/UserDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ajsRegistrationPage.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRecommendations/WebContent/WEB-INF/views/jsp/ajsRegistrationPage.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2650">
+              <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>UserDAOImpl : save</find>
+      <find>StaffServiceImpl : SAVE</find>
+      <find>StaffServiceImpl</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>UserServiceImpl</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/util/hibernate/HibernateUtil.java" />
+        <option value="$PROJECT_DIR$/WebRecommedationsService/src/main/resources/log4j2.xml" />
+        <option value="$PROJECT_DIR$/WebRecommendations/WebContent/WEB-INF/views/jsp/ajsRegistrationPage.jsp" />
+        <option value="$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/UserServiceImpl.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="980" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="my-personal-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-personal-projects" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WebRecommedationsService" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Remote.localhost">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <module name="my-personal-projects" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="true" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="1043" />
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="true" file="C:\DeveloperSpace\my-personal-projects\WebRecommedationsService/pom.xml" goal="mvn clean install" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration name="localhost" type="Remote" factoryName="Remote">
+      <module name="my-personal-projects" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="8000" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="8000" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="false" file="C:\DeveloperSpace\my-personal-projects\WebRecommedationsService/pom.xml" goal="mvn clean install" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55fe6b42-9633-45d6-9c6e-d3d0d40702b2" name="Default" comment="" />
+      <created>1506316121457</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1506316121457</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912844" sideWeight="0.50416666" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23489584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39908257" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912844" sideWeight="0.49583334" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/UserServiceImpl.java</url>
+          <line>81</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/StaffServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1825">
+          <caret line="86" column="42" lean-forward="false" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1375">
+          <caret line="55" column="20" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommendations/WebContent/WEB-INF/views/jsp/ajsRegistrationPage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2650">
+          <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/impl/UserDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1544">
+          <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommendations/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2094">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/util/hibernate/HibernateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="23" column="96" lean-forward="false" selection-start-line="23" selection-start-column="96" selection-end-line="23" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/CommonUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/resources/log4j2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="85" lean-forward="false" selection-start-line="4" selection-start-column="85" selection-end-line="4" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/user/StaffTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="23" column="25" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/StaffService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/customer/CustomerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/target/classes/com/pradeep/menu/bean/to/user/UserTO.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-900">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bean/to/user/UserTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommendations/WebContent/WEB-INF/views/jsp/ajsRegistrationPage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2650">
+          <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/StaffServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1825">
+          <caret line="86" column="42" lean-forward="false" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/bo/user/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1375">
+          <caret line="55" column="20" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRecommedationsService/src/main/java/com/pradeep/menu/dao/user/impl/UserDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>my-personal-projects</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
